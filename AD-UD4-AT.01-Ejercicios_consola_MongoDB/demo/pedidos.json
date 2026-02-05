@@ -1,0 +1,44 @@
+[
+    {
+        "idPedido": "p1",
+        "idCliente": "c1",
+        "fecha": ISODate("2026-01-22T10:30:30Z"),
+        "lineas": [
+            {
+                "sku": "sku1",
+                "nombre": "patinete",
+                "cantidad": 1,
+                "precio": 200.50
+            }
+        ],
+        "estado": "Enviado"
+    },
+    {
+        "idPedido": "p2",
+        "idCliente": "c1",
+        "fecha": ISODate("2026-01-20T12:00:00Z"),
+        "lineas": [
+            {
+                "sku": "sku2",
+                "nombre": "juego de mesa",
+                "cantidad": 2,
+                "precio": 21
+            }
+        ],
+        "estado": "En espera"
+    },
+    {
+        "idPedido": "p3",
+        "idCliente": "c2",
+        "fecha": new Date(),
+        "lineas": [
+            {
+                "sku": "sku3",
+                "nombre": "mando",
+                "cantidad": 3,
+                "precio": 99.99
+            }
+        ],
+        "estado": "Enviado"
+    }
+]

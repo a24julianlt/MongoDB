@@ -1,0 +1,24 @@
+[
+    {
+        "sensorId": "1",
+        "ts": ISODate("2026-01-22T10:30:30Z"),
+        "tipo": "temp",
+        "valor": 20,
+        "ubicacion": "Madrid"
+    },
+    {
+        "sensorId": "2",
+        "ts": ISODate("2026-01-22T08:00:00Z"),
+        "tipo": "hum",
+        "valor": 5,
+        "ubicacion": "Catoira"
+    },
+    {
+        "sensorId": "3",
+        "ts": ISODate("2026-01-20T10:00:00Z"),
+        "tipo": "temp",
+        "valor": 30,
+        "ubicacion": "Santiago"
+    }
+]
+
