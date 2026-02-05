@@ -21,13 +21,13 @@ public class App {
         partidas.add(p1);
         Partida p2 = controller.crearPartida("Luigi", "Pac-Man", 800, 10, 2);
         partidas.add(p2);
-        Partida p3 = controller.crearPartida("Mario", "Donkey Kong", 1500, 18, 4);
+        Partida p3 = controller.crearPartida("Mario", "Space Invaders", 1600, 20, 4);
         partidas.add(p3);
         Partida p4 = controller.crearPartida("Peach", "Tetris", 600, 12, 1);
         partidas.add(p4);
-        Partida p5 = controller.crearPartida("Mario", "Super Mario Bros", 2000, 25, 5);
+        Partida p5 = controller.crearPartida("Mario", "Pac-Man", 1400, 18, 3);
         partidas.add(p5);
-        Partida p6 = controller.crearPartida("Luigi", "Galaga", 950, 14, 3);
+        Partida p6 = controller.crearPartida("Luigi", "Space Invaders", 950, 14, 2);
         partidas.add(p6);
 
         // guardar partidas
@@ -44,7 +44,7 @@ public class App {
                 new Document("$group",
                         new Document("_id", "$xogador")
                                 .append("PuntuacionTotal", new Document("$sum", "$puntuacion"))));
-                                
+
         resultados = controller.consulta(filtros);
         resultados.forEach(p -> System.out.println(p));
 
@@ -55,13 +55,22 @@ public class App {
                 new Document("$group",
                         new Document("_id", "$xogador")
                                 .append("PuntuacionMaxima", new Document("$max", "$puntuacion"))));
-                                
+
         resultados = controller.consulta(filtros);
         resultados.forEach(p -> System.out.println(p));
 
         System.out.println();
 
         // 3. Partida máis curta por xogo
+        filtros = Arrays.asList(
+                new Document("$group",
+                        new Document("_id", "$xogo")
+                                .append("DuracionMinima", new Document("$min", "$duracion"))));
+
+        resultados = controller.consulta(filtros);
+        resultados.forEach(p -> System.out.println(p));
+
+        System.out.println();
 
         controller.close();
     }
