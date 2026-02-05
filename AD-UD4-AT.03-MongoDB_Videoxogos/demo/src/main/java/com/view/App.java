@@ -1,13 +1,19 @@
 package com.view;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import org.bson.*;
+import org.bson.conversions.Bson;
 
 import com.controller.PartidaController;
 import com.model.Partida;
 
 public class App {
     public static void main(String[] args) {
+        System.setProperty("org.slf4j.simpleLogger.log.org.mongodb.driver", "error");
+
         PartidaController controller = new PartidaController();
         List<Partida> partidas = new ArrayList<>();
 
@@ -27,8 +33,10 @@ public class App {
         // guardar partidas
         partidas.forEach(p -> controller.guardarPartida(p));
 
-        
+        List<Bson> filtros = Arrays.asList();
+        List<Document> resultados = controller.consulta(filtros);
 
+        resultados.forEach(p -> System.out.println(p));
 
         controller.close();
     }

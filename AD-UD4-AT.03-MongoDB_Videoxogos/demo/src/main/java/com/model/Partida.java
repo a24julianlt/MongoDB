@@ -9,7 +9,7 @@ public class Partida {
 
     public Partida(String xogador, String xogo, int puntuacion, float duracion, int nivel) {
         this.xogador = xogador; // nombre del jugador
-        this.xogo = xogo;   // nombre del juego
+        this.xogo = xogo; // nombre del juego
         this.puntuacion = puntuacion;
         this.duracion = duracion;
         this.nivel = nivel;
@@ -103,5 +103,11 @@ public class Partida {
      */
     public void setNivel(int nivel) {
         this.nivel = nivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Partida[xogador: " + xogador + ", xogo: " + xogo + ", puntuación: " + puntuacion
+                + ", duración: " + duracion + ", nivel: " + nivel + "]";
     }
 }

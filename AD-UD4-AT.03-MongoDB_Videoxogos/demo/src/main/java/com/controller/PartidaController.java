@@ -1,6 +1,10 @@
 package com.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.*;
+import org.bson.conversions.Bson;
 
 import com.model.Partida;
 import com.mongodb.client.MongoCollection;
@@ -28,8 +32,19 @@ public class PartidaController {
         }
     }
 
-    public void consulta() {
+    public List<Document> consulta(List<Bson> filtros) {
+        List<Document> listDoc = new ArrayList<>();
 
+        try {
+            MongoCollection<Document> collection = mongo.partida();
+
+            collection.aggregate(filtros).into(listDoc);
+            
+        } catch (Exception e) {
+            System.out.println("ERROR AL LISTAR LAS PARTIDAS: " + e.getMessage());
+        }
+
+        return listDoc;
     }
 
     public void close() {
