@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bson.*;
+import org.bson.Document;
 import org.bson.conversions.Bson;
 
 import com.controller.PartidaController;
@@ -35,8 +35,33 @@ public class App {
 
         List<Bson> filtros = Arrays.asList();
         List<Document> resultados = controller.consulta(filtros);
-
         resultados.forEach(p -> System.out.println(p));
+
+        System.out.println();
+
+        // 1. Puntuación total por xogador
+        filtros = Arrays.asList(
+                new Document("$group",
+                        new Document("_id", "$xogador")
+                                .append("PuntuacionTotal", new Document("$sum", "$puntuacion"))));
+                                
+        resultados = controller.consulta(filtros);
+        resultados.forEach(p -> System.out.println(p));
+
+        System.out.println();
+
+        // 2. Mellor partida de cada xogador
+        filtros = Arrays.asList(
+                new Document("$group",
+                        new Document("_id", "$xogador")
+                                .append("PuntuacionMaxima", new Document("$max", "$puntuacion"))));
+                                
+        resultados = controller.consulta(filtros);
+        resultados.forEach(p -> System.out.println(p));
+
+        System.out.println();
+
+        // 3. Partida máis curta por xogo
 
         controller.close();
     }
