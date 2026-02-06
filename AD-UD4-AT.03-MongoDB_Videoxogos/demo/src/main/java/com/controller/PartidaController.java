@@ -39,12 +39,33 @@ public class PartidaController {
             MongoCollection<Document> collection = mongo.partida();
 
             collection.aggregate(filtros).into(listDoc);
-            
+
         } catch (Exception e) {
             System.out.println("ERROR AL LISTAR LAS PARTIDAS: " + e.getMessage());
         }
 
         return listDoc;
+    }
+
+    public Long borrar(Partida p) {
+        Long count = 0L;
+
+        try {
+            MongoCollection<Document> collection = mongo.partida();
+
+            Document docPartida = new Document("xogador", p.getXogador())
+                    .append("xogo", p.getXogo())
+                    .append("puntuacion", p.getPuntuacion())
+                    .append("duracion", p.getDuracion())
+                    .append("nivel", p.getNivel());
+
+            count = collection.deleteMany(docPartida).getDeletedCount();
+
+        } catch (Exception e) {
+            System.out.println("ERROR AL BORRAR UNA PARTIDA: " + e.getMessage());
+        }
+
+        return count;
     }
 
     public void close() {
