@@ -40,11 +40,10 @@ public class App {
                 System.out.println();
 
                 // 1. Puntuación total por xogador
-                filtros = Arrays.asList(
-                                new Document("$group",
-                                                new Document("_id", "$xogador")
-                                                                .append("PuntuacionTotal",
-                                                                                new Document("$sum", "$puntuacion"))));
+                filtros = Arrays.asList(new Document("$group",
+                                new Document("_id", "$xogador")
+                                                .append("PuntuacionTotal",
+                                                                new Document("$sum", "$puntuacion"))));
 
                 resultados = controller.consulta(filtros);
                 resultados.forEach(p -> System.out.println(p));
@@ -52,11 +51,10 @@ public class App {
                 System.out.println();
 
                 // 2. Mellor partida de cada xogador
-                filtros = Arrays.asList(
-                                new Document("$group",
-                                                new Document("_id", "$xogador")
-                                                                .append("PuntuacionMaxima",
-                                                                                new Document("$max", "$puntuacion"))));
+                filtros = Arrays.asList(new Document("$group",
+                                new Document("_id", "$xogador")
+                                                .append("PuntuacionMaxima",
+                                                                new Document("$max", "$puntuacion"))));
 
                 resultados = controller.consulta(filtros);
                 resultados.forEach(p -> System.out.println(p));
@@ -64,11 +62,10 @@ public class App {
                 System.out.println();
 
                 // 3. Partida máis curta por xogo
-                filtros = Arrays.asList(
-                                new Document("$group",
-                                                new Document("_id", "$xogo")
-                                                                .append("DuracionMinima",
-                                                                                new Document("$min", "$duracion"))));
+                filtros = Arrays.asList(new Document("$group",
+                                new Document("_id", "$xogo")
+                                                .append("DuracionMinima",
+                                                                new Document("$min", "$duracion"))));
 
                 resultados = controller.consulta(filtros);
                 resultados.forEach(p -> System.out.println(p));
@@ -76,11 +73,10 @@ public class App {
                 System.out.println();
 
                 // 4. Ranking por xogadores
-                filtros = Arrays.asList(
-                                new Document("$group",
-                                                new Document("_id", "$xogador")
-                                                                .append("PuntuacionTotal",
-                                                                                new Document("$sum", "$puntuacion"))),
+                filtros = Arrays.asList(new Document("$group",
+                                new Document("_id", "$xogador")
+                                                .append("PuntuacionTotal",
+                                                                new Document("$sum", "$puntuacion"))),
                                 new Document("$sort", new Document("PuntuacionTotal", -1)));
 
                 resultados = controller.consulta(filtros);
